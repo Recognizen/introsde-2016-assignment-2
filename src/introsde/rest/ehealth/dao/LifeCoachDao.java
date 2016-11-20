@@ -1,7 +1,4 @@
 package introsde.rest.ehealth.dao;
-import introsde.rest.ehealth.model.Person;
-
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,6 +13,7 @@ public enum LifeCoachDao {
 		if (emf!=null) {
 			emf.close();
 		}
+		
 		emf = Persistence.createEntityManagerFactory("introsde-jpa");
 	}
 	
