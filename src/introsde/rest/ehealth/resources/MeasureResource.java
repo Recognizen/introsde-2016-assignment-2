@@ -83,8 +83,8 @@ public class MeasureResource {
 	}
 	
 	@POST
-	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON} )
-	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public Person newMeasure(Measure measure) throws IOException {
 		System.out.println("Creating new measure..." + idPerson + " "+measureType );
 

@@ -95,8 +95,8 @@ public class PersonCollectionResource {
 	// let's create this service for responding a submission form
 	// 
 	@POST
-	@Produces(MediaType.APPLICATION_XML)
-	@Consumes(MediaType.APPLICATION_XML)
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	public Person newPerson(Person person) throws IOException {
 		System.out.println("Creating new person...");
 		List<Measure> measures = person.getMeasure();

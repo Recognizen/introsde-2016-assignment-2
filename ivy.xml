@@ -77,7 +77,7 @@
         <dependency org="org.glassfish.jersey.media" name="jersey-media-json-jackson" rev="2.11"/>
         <dependency org="junit" name="junit-dep" rev="4.8.2"/>     
 
-            
+        <dependency org="com.jayway.jsonpath" name="json-path-assert" rev="0.8.1"/>     
         
     </dependencies>
 	
