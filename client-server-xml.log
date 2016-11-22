@@ -220,7 +220,7 @@ Request: #4 POST /person Accept: APPLICATION/XML Content-Type: APPLICATION/XML
     <measure>
       <mid>234</mid>
       <value>72.3</value>
-      <created>2016-11-22T20:08:05.524Z</created>
+      <created>2016-11-22T20:34:33.768Z</created>
       <measureDefinition>
         <type>weight</type>
         <dataType>double</dataType>
@@ -229,7 +229,7 @@ Request: #4 POST /person Accept: APPLICATION/XML Content-Type: APPLICATION/XML
     <measure>
       <mid>235</mid>
       <value>1.86</value>
-      <created>2016-11-22T20:08:05.533Z</created>
+      <created>2016-11-22T20:34:33.788Z</created>
       <measureDefinition>
         <type>height</type>
         <dataType>double</dataType>

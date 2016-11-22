@@ -423,3 +423,25 @@ Request: #6 GET /person/5/steps Accept: APPLICATION/JSON Content-Type: APPLICATI
   "value" : "102",
   "created" : "2011-12-09"
 } ]
+-------------------- Task 3.10 --------------------
+
+Request: #6 GET /person/5/steps/4 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+{
+  "mid" : 4,
+  "value" : "51",
+  "created" : "2011-12-09"
+}
+Request: #10 PUT /person/5/steps/4 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 201
+ 
+Request: #6 GET /person/5/steps/4 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+{
+  "mid" : 4,
+  "value" : "511",
+  "created" : "2011-12-08"
+}
