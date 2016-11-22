@@ -26,14 +26,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-/*
- * TODO 
- * - There is a problem with the EntityManager injection through @PersistenceUnit or @PersistenceContext
- * - will look into it later
- */
-
 @Stateless
-@LocalBean//Will map the resource to the URL /ehealth/v2
+@LocalBean
 @Path("/person")
 public class PersonCollectionResource {
 
@@ -61,39 +55,16 @@ public class PersonCollectionResource {
 		return people;
 	}
 
-
-	// retuns the number of people
-	// to get the total number of records
 	@GET
 	@Path("count")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getCount() {
 		System.out.println("Getting count...");
-	    //List<Person> list = entityManager.createNamedQuery("Person.findAll", Person.class).getResultList();
 	    List<Person> people = Person.getAll();
 		int count = people.size();
 		return String.valueOf(count);
 	}
 
-//	// let's create this service for responding a submission form
-	@POST
-	@Produces(MediaType.TEXT_HTML)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public void newPerson(@FormParam("id") int id,
-			@FormParam("firstname") String firstname,
-			@FormParam("lastname") String lastname,
-			@Context HttpServletResponse servletResponse) throws IOException {
-		Person p = new Person();
-		p.setIdPerson(id);
-		p.setFirstname(firstname);
-		p.setLastname(lastname);
-		Person.savePerson(p);
-		servletResponse.sendRedirect("../NewPerson.html");
-	}
-	
-	
-	// let's create this service for responding a submission form
-	// 
 	@POST
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
@@ -120,16 +91,11 @@ public class PersonCollectionResource {
 					//change and return bad request
 				}
 			}
-		}
-		
+		}		
 		return Person.savePerson(person);
 	}
 	
-
-	// Defines that the next path parameter after the base url is
-	// treated as a parameter and passed to the PersonResources
-	// Allows to type http://localhost:599/base_url/1
-	// 1 will be treaded as parameter todo and passed to PersonResource
+	//Forward the request to PersonResource
 	@Path("{personId}")
 	public PersonResource getPerson(@PathParam("personId") int id) {
 		return new PersonResource(uriInfo, request, id);

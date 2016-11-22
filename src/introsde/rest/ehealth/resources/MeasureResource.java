@@ -59,11 +59,10 @@ public class MeasureResource {
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public List<HealthMeasureHistory> getMeasureHistory() {
-		List<HealthMeasureHistory> all = HealthMeasureHistory.getAll();
+		List<HealthMeasureHistory> all = HealthMeasureHistory.getHealthMeasureHistoryByPersonId(idPerson);
 		List<HealthMeasureHistory> history = new ArrayList<>();
 		for(HealthMeasureHistory m : all){
-			if(m.getPerson().getIdPerson() == idPerson 
-					&& m.getMeasureDefinition().getType().equals(measureType)){
+			if(m.getMeasureDefinition().getType().equals(measureType)){
 				history.add(m);
 			}
 		}

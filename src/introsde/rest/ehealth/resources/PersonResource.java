@@ -1,6 +1,9 @@
 package introsde.rest.ehealth.resources;
 
+import introsde.rest.ehealth.model.HealthMeasureHistory;
 import introsde.rest.ehealth.model.Person;
+
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -43,27 +46,15 @@ public class PersonResource {
 		this.request = request;
 		this.id = id;
 	}
-
 	
 	// Application integration
 	@GET
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Person getPerson() {
-		Person person = this.getPersonById(id);
-		if (person == null)
-			throw new RuntimeException("Get: Person with " + id + " not found");
-		return person;
-	}
-
-	// for the browser
-	@GET
-	@Produces(MediaType.TEXT_XML)
-	public Person getPersonHTML() {
-		Person person = this.getPersonById(id);
-		if (person == null)
-			throw new RuntimeException("Get: Person with " + id + " not found");
-		System.out.println("Returning person... " + person.getIdPerson());
-		return person;
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON , MediaType.TEXT_XML})
+	public Response getPerson() {
+		 Person person = Person.getPersonById(id);
+		 if (person == null)
+			 return Response.status(404).build();
+		 return Response.ok().entity(person).build();
 	}
 
 	@PUT
@@ -75,45 +66,48 @@ public class PersonResource {
 		
 		Response res;
 		
-		Person existing = getPersonById(this.id);
+		Person existing = Person.getPersonById(this.id);
 		
 		if (existing == null) {
 			res = Response.noContent().build();
 		} else {
 			res = Response.created(uriInfo.getAbsolutePath()).build();
 			person.setIdPerson(this.id);
+			
+			//Checks ensure that fields are not lost during update
+			if(person.getFirstname() == null)
+				person.setFirstname(existing.getFirstname());
+			if(person.getLastname() == null)
+				person.setLastname(existing.getLastname());
+			if(person.getBirthdate() == null)
+				person.setBirthdate(existing.getBirthdate());
+			if(person.getEmail() == null)
+				person.setEmail(existing.getEmail());
+			if(person.getUsername() == null)
+				person.setUsername(existing.getUsername());
+			
 			person.setMeasure(existing.getMeasure());
+			
 			Person.updatePerson(person);
 		}
-
 		return res;
-
-		
 	}
 
 	@DELETE
 	public void deletePerson() {
-		Person c = getPersonById(id);
+		Person c = Person.getPersonById(id);
 		if (c == null)
-			throw new RuntimeException("Delete: Person with " + id
-					+ " not found");
-
+			throw new RuntimeException("Delete: Person with " + id + " not found");
+		
+		//Delete the history of the person 
+		List<HealthMeasureHistory> history = HealthMeasureHistory.getHealthMeasureHistoryByPersonId(c.getIdPerson());
+		for(HealthMeasureHistory m : history)
+			HealthMeasureHistory.removeHealthMeasureHistory(m);
+		
 		Person.removePerson(c);
 	}
 
-	public Person getPersonById(int personId) {
-		System.out.println("Reading person from DB with id: "+personId);
-		//Person person = entityManager.find(Person.class, personId);
-		
-		Person person = Person.getPersonById(personId);
-		System.out.println("Person: "+person.toString());
-		return person;
-	}
-	
-	// Defines that the next path parameter after the base url is
-	// treated as a parameter and passed to the PersonResources
-	// Allows to type http://localhost:599/base_url/1
-	// 1 will be treaded as parameter todo and passed to PersonResource
+	//forward the request to further path 
 	@Path("{measureType}")
 	public MeasureResource getHistory(@PathParam("measureType") String name) {
 		return new MeasureResource(uriInfo, request, id, name);

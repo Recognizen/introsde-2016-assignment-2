@@ -120,19 +120,18 @@ public class HealthMeasureHistory implements Serializable {
 		return p;
 	}
 	
-	/*
+	//get all history having idPerson
 	public static List<HealthMeasureHistory> getHealthMeasureHistoryByPersonId(int idPerson) {
 		EntityManager em = LifeCoachDao.instance.createEntityManager();
-		List<HealthMeasureHistory> p = em.createQuery("SELECT p FROM HealthMeasureHistory p WHERE p.idPerson = ?idPerson",
+		
+		List<HealthMeasureHistory> p = em.createQuery("SELECT p FROM HealthMeasureHistory p WHERE p.person.idPerson = :idPerson",
 				HealthMeasureHistory.class)
 				.setParameter("idPerson", idPerson)
 				.getResultList();
-		List<HealthMeasureHistory> p = em.createQuery("SELECT p FROM HealthMeasureHistory p",
-				HealthMeasureHistory.class)
-				.getResultList();
+		
 		LifeCoachDao.instance.closeConnections(em);
 		return p;
-	}*/
+	}
 	
 	public static List<HealthMeasureHistory> getAll() {
 		EntityManager em = LifeCoachDao.instance.createEntityManager();
