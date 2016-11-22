@@ -4,6 +4,7 @@ import introsde.rest.ehealth.dao.LifeCoachDao;
 import introsde.rest.ehealth.model.MeasureDefinition;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,9 +18,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.OneToOne;
 
 /**
@@ -29,7 +35,7 @@ import javax.persistence.OneToOne;
 @Entity
 @Table(name = "LifeStatus")
 @NamedQuery(name = "LifeStatus.findAll", query = "SELECT l FROM Measure l")
-@XmlType(propOrder = { "mid", "value", "measureDefinition" })
+@XmlType(propOrder = { "mid", "value", "created", "measureDefinition" })
 @XmlRootElement(name="measure")
 public class Measure implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -44,6 +50,11 @@ public class Measure implements Serializable {
 
 	@Column(name = "value")
 	private String value;
+
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@Column(name="created")
+	private Date created;
 	
 	@OneToOne
 	@JoinColumn(name = "idMeasureDef", referencedColumnName = "idMeasureDef", insertable = true, updatable = true)
@@ -70,6 +81,14 @@ public class Measure implements Serializable {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+	
+	public Date getCreated() {
+		return this.created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public MeasureDefinition getMeasureDefinition() {

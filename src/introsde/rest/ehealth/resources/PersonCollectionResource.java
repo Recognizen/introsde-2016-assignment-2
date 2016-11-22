@@ -5,6 +5,7 @@ import introsde.rest.ehealth.model.MeasureDefinition;
 import introsde.rest.ehealth.model.Person;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.*;
@@ -77,6 +78,8 @@ public class PersonCollectionResource {
 			{
 				//set the idPerson in the measure table
 				m.setPerson(person);
+				if(m.getCreated() == null)
+					m.setCreated(new Date());
 				
 				//find a pre-defined MeasureDefinition type
 				MeasureDefinition mDef = MeasureDefinition.getByName(m.getMeasureDefinition().getType());

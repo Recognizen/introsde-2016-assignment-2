@@ -125,7 +125,7 @@ public class ClientMain {
 
 		// BODY of the PUT request
 		String requestBody = "<person>"
-								+ "<firstname> a" + oldFirstName + "a </firstname>"
+								+ "<firstname>a" + oldFirstName + "a</firstname>"
 								+ "<healthProfile></healthProfile>"
 							+ "</person>";
 
@@ -136,7 +136,7 @@ public class ClientMain {
 		Response responseGET = client.doGET("person/" + first_person_id, format);
 		String getBody = responseGET.readEntity(String.class);
 		//Save the first name of the updated person
-		String newFirstName = queryXML.getNodeResult("person/firstname", body).getTextContent();
+		String newFirstName = queryXML.getNodeResult("person/firstname", getBody).getTextContent();
 
 		//if PUT request was successful and the name is actually changed then OK
 		reqResult = ((response.getStatus() == 201 && !oldFirstName.equals(newFirstName) ? "OK" : "ERROR"));
@@ -251,6 +251,7 @@ public class ClientMain {
 		writerXML.write("\n-------------------- Task 3.7 --------------------\n");
 		
 		//to be used in Task 3.8
+		int measurePersonId = 0;
 		String measure_id ="";
 		String measure_type ="";
 		
@@ -274,6 +275,7 @@ public class ClientMain {
 					
 					//This will ensure that we keep at least one measure for Task 3.8
 					if (nodes.getLength() > 0) {
+						measurePersonId = i.intValue();
 						measure_id = nodes.item(0).getTextContent();
 						measure_type = measureType;
 						measureCount+=nodes.getLength();
@@ -286,8 +288,8 @@ public class ClientMain {
 		if (measureCount == 0) {
 			reqResult = "ERROR";
 			request = "#6 GET /person/{id}/{measureType} Accept: APPLICATION/XML Content-Type: APPLICATION/XML";
-			System.out.println(printResult(request, 404 , reqResult, "", format));
-			writerXML.write(printResult(request, 404 , reqResult, "", format));
+			System.out.println(printResult(request, 204 , reqResult, "", format));
+			writerXML.write(printResult(request, 204 , reqResult, "", format));
 		} 
 		else {
 			reqResult = "OK";
@@ -303,8 +305,8 @@ public class ClientMain {
 						System.out.println(printResult(request, response.getStatus(), reqResult, body, format));
 						writerXML.write(printResult(request, response.getStatus(), reqResult, body, format));
 					} else {
-						System.out.println(printResult(request, 404 , reqResult, "", format));
-						writerXML.write(printResult(request, 404 , reqResult, "", format));
+						System.out.println(printResult(request, 204 , reqResult, "", format));
+						writerXML.write(printResult(request, 204 , reqResult, "", format));
 					}
 				}
 			}
@@ -319,12 +321,12 @@ public class ClientMain {
 		writerXML.write("\n-------------------- Task 3.8 --------------------\n");
 		
 		
-		request = "#7 GET /person/" + first_person_id 
+		request = "#7 GET /person/" + measurePersonId 
 				+ "/" + measure_type
 				+ "/" + measure_id
 				+ " Accept: APPLICATION/XML Content-Type: APPLICATION/XML";
 
-		response = client.doGET("person/" + first_person_id + "/" + measure_type + "/" + measure_id , format);
+		response = client.doGET("person/" + measurePersonId + "/" + measure_type + "/" + measure_id , format);
 		body = response.readEntity(String.class);
 
 		reqResult = (response.getStatus() == 200 ? "OK" : "ERROR");
@@ -339,11 +341,11 @@ public class ClientMain {
 		System.out.println("\nXML:-------------------- Task 3.9 --------------------\n");
 		writerXML.write("\n-------------------- Task 3.9 --------------------\n");
 		
-		request = "#6 GET /person/" + first_person_id + "/" + measure_type
+		request = "#6 GET /person/" + measurePersonId + "/" + measure_type
 				+ " Accept: APPLICATION/XML Content-Type: APPLICATION/XML";
 
 		//GET all measures having type
-		response = client.doGET("person/"+ first_person_id + "/"+ measure_type, format);
+		response = client.doGET("person/"+ measurePersonId + "/"+ measure_type, format);
 		body = response.readEntity(String.class);
 		
 		//store how many measures there were
@@ -352,20 +354,20 @@ public class ClientMain {
 			NodeList nodes = queryXML.getNodeListResult("healthMeasureHistories/measure/mid" , body);
 			measureCount = nodes.getLength();
 			
-			String requestPost = "#8 POST /person/" + first_person_id + "/" + measure_type
+			String requestPost = "#8 POST /person/" + measurePersonId + "/" + measure_type
 								+ " Accept: APPLICATION/XML Content-Type: APPLICATION/XML";
 
 			requestBody = "<measure>" 
 							+ "<value>102</value>"
-							//+ "<created>2011-12-09</created>" 
+							+ "<created>2011-12-09</created>" 
 						+ "</measure>";
 			
 			//POST request adding a measure
-			Response responsePost = client.doPOST("person/" + first_person_id + "/" + measure_type, requestBody, format);	
+			Response responsePost = client.doPOST("person/" + measurePersonId + "/" + measure_type, requestBody, format);	
 			String postBody = responsePost.readEntity(String.class);
 
 			//Redo the GET
-			responseGET = client.doGET("person/"+ first_person_id + "/"+ measure_type, format);
+			responseGET = client.doGET("person/"+ measurePersonId + "/"+ measure_type, format);
 			getBody = responseGET.readEntity(String.class);
 			//Find new number of measures
 			NodeList nodes2 = queryXML.getNodeListResult("healthMeasureHistories/measure/mid", getBody);
@@ -585,6 +587,7 @@ public class ClientMain {
 		writerJSON.write("\n-------------------- Task 3.7 --------------------\n");
 		
 		//to be used in Task 3.8
+		int measurePersonId = 0;
 		String measure_id ="";
 		String measure_type ="";
 		
@@ -608,21 +611,24 @@ public class ClientMain {
 
 					//This will ensure that we keep at least one measure for Task 3.8
 					if(measures.length()>0){
+						measurePersonId = i.intValue();
 						measure_id = ((JSONObject)measures.get(0)).getInt("mid")+"";
 						measure_type = measureType;
 						measureCount += measures.length();
-						//System.out.println(i.toString() +" : "+ measure_id + " " + measure_type +" "+measureCount);
+					//	System.out.println(i.toString() +" : "+ measure_id + " " + measure_type +" "+measureCount);
 					}
 				}
 			}
 		}
 		
+		//System.out.println(measure_id+" "+measure_type+" "+measureCount);
+		
 		//if at least one measure was found among the two people then OK 
 		if (measureCount == 0) {
 			reqResult = "ERROR";
 			request = "#6 GET /person/{id}/{measureType} Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON";
-			System.out.println(printResult(request, 404 , reqResult, "", format));
-			writerJSON.write(printResult(request, 404 , reqResult, "", format));
+			System.out.println(printResult(request, 204 , reqResult, "", format));
+			writerJSON.write(printResult(request, 204 , reqResult, "", format));
 		} 
 		else {
 			reqResult = "OK";
@@ -638,8 +644,8 @@ public class ClientMain {
 						System.out.println(printResult(request, response.getStatus(), reqResult, body, format));
 						writerJSON.write(printResult(request, response.getStatus(), reqResult, body, format));
 					} else {
-						System.out.println(printResult(request, 404 , reqResult, "", format));
-						writerJSON.write(printResult(request, 404 , reqResult, "", format));
+						System.out.println(printResult(request, 204 , reqResult, "", format));
+						writerJSON.write(printResult(request, 204 , reqResult, "", format));
 					}
 				}
 			}
@@ -652,12 +658,12 @@ public class ClientMain {
 		writerJSON.write("\n-------------------- Task 3.8 --------------------\n");
 		
 		
-		request = "#7 GET /person/" + first_person_id 
+		request = "#7 GET /person/" + measurePersonId 
 				+ "/" + measure_type
 				+ "/" + measure_id
 				+ " Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON";
 
-		response = client.doGET("person/" + first_person_id + "/" + measure_type + "/" + measure_id , format);
+		response = client.doGET("person/" + measurePersonId + "/" + measure_type + "/" + measure_id , format);
 		body = response.readEntity(String.class);
 
 		reqResult = (response.getStatus() == 200 ? "OK" : "ERROR");
@@ -672,11 +678,11 @@ public class ClientMain {
 		System.out.println("\nJSON:-------------------- Task 3.9 --------------------\n");
 		writerJSON.write("\n-------------------- Task 3.9 --------------------\n");
 		
-		request = "#6 GET /person/" + first_person_id + "/" + measure_type
+		request = "#6 GET /person/" + measurePersonId + "/" + measure_type
 				+ " Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON";
 
 		//GET all measures having type
-		response = client.doGET("person/"+ first_person_id + "/"+ measure_type, format);
+		response = client.doGET("person/"+ measurePersonId + "/"+ measure_type, format);
 		body = response.readEntity(String.class);
 		
 		//store how many measures there were
@@ -685,17 +691,18 @@ public class ClientMain {
 			JSONArray measuresBefore = new JSONArray(body);
 			measureCount = measuresBefore.length();
 			
-			String requestPost = "#8 POST /person/" + first_person_id + "/" + measure_type
+			String requestPost = "#8 POST /person/" + measurePersonId + "/" + measure_type
 								+ " Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON";
 
-			requestBody = "{ \"value\":\"102\"}";
+			requestBody = "{ \"value\":\"102\","
+							+ "\"created\":\"1950-10-10\"}";
 			
 			//POST request adding a measure
-			Response responsePost = client.doPOST("person/" + first_person_id + "/" + measure_type, requestBody, format);	
+			Response responsePost = client.doPOST("person/" + measurePersonId + "/" + measure_type, requestBody, format);	
 			String postBody = responsePost.readEntity(String.class);
 
 			//Redo the GET
-			responseGET = client.doGET("person/"+ first_person_id + "/"+ measure_type, format);
+			responseGET = client.doGET("person/"+ measurePersonId + "/"+ measure_type, format);
 			String getBody = responseGET.readEntity(String.class);
 			//Find new number of measures
 			JSONArray measuresAfter = new JSONArray(getBody);

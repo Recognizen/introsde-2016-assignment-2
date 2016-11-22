@@ -66,7 +66,9 @@ public class MeasureResource {
 				history.add(m);
 			}
 		}
-		return history;
+		 if (history.isEmpty())
+			 return null;
+		 return history;
 	}
 	
 	@GET
@@ -74,9 +76,12 @@ public class MeasureResource {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public HealthMeasureHistory getMeasurebyId(@PathParam("mid") int mid) {
 		HealthMeasureHistory m = null;
-		for(HealthMeasureHistory tmp : this.getMeasureHistory()){
-			if(tmp.getMid() == mid)
-				m = tmp;
+		List<HealthMeasureHistory> history = this.getMeasureHistory();
+		if(!history.isEmpty()){
+			for(HealthMeasureHistory tmp : history){
+				if(tmp.getMid() == mid)
+					m = tmp;
+			}
 		}
 		return m;
 	}
@@ -95,7 +100,10 @@ public class MeasureResource {
 			Measure existing = null;
 			
 			Person p = Person.getPersonById(idPerson);
+			//fill in missing information
 			measure.setPerson(p);
+			if(measure.getCreated() == null)
+				measure.setCreated(new Date());
 		
 			List<Measure> oldMeasures = p.getMeasure();
 			for(int i = 0; i < oldMeasures.size(); i++){
@@ -106,7 +114,7 @@ public class MeasureResource {
 					HealthMeasureHistory newEntry = new HealthMeasureHistory();
 					newEntry.setPerson(p);
 					newEntry.setValue(existing.getValue());
-					newEntry.setCreated(new Date());
+					newEntry.setCreated(existing.getCreated());
 					newEntry.setMeasureDefinition(existing.getMeasureDefinition());
 					
 					HealthMeasureHistory.saveHealthMeasureHistory(newEntry);

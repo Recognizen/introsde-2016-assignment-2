@@ -30,6 +30,7 @@ public class ClientRequests {
 	}
 
     protected static URI getBaseURI() {
+      //  return UriBuilder.fromUri("http://localhost:5900/sdelab").build();
         return UriBuilder.fromUri("https://warm-dawn-26932.herokuapp.com/sdelab").build();
     }
     
