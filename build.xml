@@ -101,7 +101,7 @@
             </java>
         </target>
     	
-        <target name="execute.client" depends="compile">
+        <target name="execute.client" depends="install">
               <echo message="app start introsde.rest.client.ClientMain in ${build.dir}" />
               <java classname="introsde.rest.client.ClientMain" classpath="${build.dir}" fork="true">
                   <arg value="$JAVA_OPTS  -cp" />
