@@ -762,7 +762,7 @@ public class ClientMain {
 			
 			
 			System.out.println("\nJSON:-------------------- Task 3.10 --------------------\n");
-			writerXML.write("\n-------------------- Task 3.10 --------------------\n");
+			writerJSON.write("\n-------------------- Task 3.10 --------------------\n");
 			
 			//Using a R#6 to retrieve the measure with specific mid = measure_id
 			String requestGET = "#6 GET /person/" + measurePersonId + "/"
@@ -794,14 +794,14 @@ public class ClientMain {
 
 			//responseGET and body belong to the first GET request
 			System.out.println(printResult(requestGET, responseGET.getStatus(), "OK", body, format));
-			writerXML.write(printResult(requestGET, responseGET.getStatus(), "OK", body, format));
+			writerJSON.write(printResult(requestGET, responseGET.getStatus(), "OK", body, format));
 
 			System.out.println(printResult(request, statusPUT, reqResult, "", format));
-			writerXML.write(printResult(request, statusPUT, reqResult, "", format));
+			writerJSON.write(printResult(request, statusPUT, reqResult, "", format));
 			
 			//responseGET and getBody belong to the second GET request
 			System.out.println(printResult(requestGET, responseGET.getStatus(), "OK", getBody, format));
-			writerXML.write(printResult(requestGET, responseGET.getStatus(), "OK", getBody, format));
+			writerJSON.write(printResult(requestGET, responseGET.getStatus(), "OK", getBody, format));
 			
 			// -------------------- Task 3.11 & 3.12 --------------------
 			// Not implemented
