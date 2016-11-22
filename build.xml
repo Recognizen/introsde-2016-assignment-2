@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <project name="Assignment2" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+    <project name="Assignment2" default="install" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
         <!-- PART 1: Ivy properties, download, installation and configuration -->
         <property name="ivy.install.version" value="2.4.0-rc1" />
         <property name="ivy.jar.dir" value="${basedir}/ivy" />
@@ -69,7 +69,7 @@
             <echo message="${build.dir} has been deleted" />
         </target>
     	
-        <target name="compile" depends="clean, init">
+        <target name="install" depends="clean, init">
             <echo message="Compile target has been called" />
             <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" includeAntRuntime="false">
             </javac>
