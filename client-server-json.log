@@ -1,0 +1,371 @@
+URL of the server: https://warm-dawn-26932.herokuapp.com/sdelab
+-------------------- Task 3.1 --------------------
+
+Request: #1 GET /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ {
+  "idPerson" : 3,
+  "firstname" : " aAndreaa ",
+  "lastname" : "Metal",
+  "birthdate" : "1944-12-31",
+  "email" : "jj.norris@gmail.com",
+  "username" : "jj.norris",
+  "measure" : [ {
+    "mid" : 4,
+    "value" : "72",
+    "measureDefinition" : {
+      "type" : "height",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 12,
+    "value" : "155",
+    "measureDefinition" : {
+      "type" : "weight",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 19,
+    "value" : "102",
+    "measureDefinition" : {
+      "type" : "steps",
+      "dataType" : "integer"
+    }
+  } ]
+}, {
+  "idPerson" : 4,
+  "firstname" : "John",
+  "lastname" : "Slow",
+  "birthdate" : "1944-12-31",
+  "email" : "jon.snow@gmail.com",
+  "username" : "jon.snow",
+  "measure" : [ {
+    "mid" : 5,
+    "value" : "100",
+    "measureDefinition" : {
+      "type" : "weight",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 6,
+    "value" : "1.72",
+    "measureDefinition" : {
+      "type" : "height",
+      "dataType" : "double"
+    }
+  } ]
+}, {
+  "idPerson" : 5,
+  "firstname" : "Kim",
+  "lastname" : "John",
+  "birthdate" : "1944-12-31",
+  "email" : "kim.john@gmail.com",
+  "username" : "kim.john",
+  "measure" : [ {
+    "mid" : 7,
+    "value" : "50",
+    "measureDefinition" : {
+      "type" : "weight",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 14,
+    "value" : "20",
+    "measureDefinition" : {
+      "type" : "steps",
+      "dataType" : "integer"
+    }
+  }, {
+    "mid" : 16,
+    "value" : "1.57",
+    "measureDefinition" : {
+      "type" : "height",
+      "dataType" : "double"
+    }
+  } ]
+} ]
+-------------------- Task 3.2 --------------------
+
+Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+{
+  "idPerson" : 3,
+  "firstname" : " aAndreaa ",
+  "lastname" : "Metal",
+  "birthdate" : "1944-12-31",
+  "email" : "jj.norris@gmail.com",
+  "username" : "jj.norris",
+  "measure" : [ {
+    "mid" : 4,
+    "value" : "72",
+    "measureDefinition" : {
+      "type" : "height",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 12,
+    "value" : "155",
+    "measureDefinition" : {
+      "type" : "weight",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 19,
+    "value" : "102",
+    "measureDefinition" : {
+      "type" : "steps",
+      "dataType" : "integer"
+    }
+  } ]
+}
+-------------------- Task 3.3 --------------------
+
+Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+{
+  "idPerson" : 3,
+  "firstname" : " aAndreaa ",
+  "lastname" : "Metal",
+  "birthdate" : "1944-12-31",
+  "email" : "jj.norris@gmail.com",
+  "username" : "jj.norris",
+  "measure" : [ {
+    "mid" : 4,
+    "value" : "72",
+    "measureDefinition" : {
+      "type" : "height",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 12,
+    "value" : "155",
+    "measureDefinition" : {
+      "type" : "weight",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 19,
+    "value" : "102",
+    "measureDefinition" : {
+      "type" : "steps",
+      "dataType" : "integer"
+    }
+  } ]
+}
+Request: #3 PUT /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 201
+ 
+Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+{
+  "idPerson" : 3,
+  "firstname" : "a aAndreaa a",
+  "lastname" : "Metal",
+  "birthdate" : "1944-12-31",
+  "email" : "jj.norris@gmail.com",
+  "username" : "jj.norris",
+  "measure" : [ {
+    "mid" : 4,
+    "value" : "72",
+    "measureDefinition" : {
+      "type" : "height",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 12,
+    "value" : "155",
+    "measureDefinition" : {
+      "type" : "weight",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 19,
+    "value" : "102",
+    "measureDefinition" : {
+      "type" : "steps",
+      "dataType" : "integer"
+    }
+  } ]
+}
+-------------------- Task 3.4 --------------------
+
+Request: #4 POST /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+{
+  "idPerson" : 7,
+  "firstname" : "New",
+  "lastname" : "Person",
+  "birthdate" : "1978-09-01",
+  "email" : "new.person@gmail.com",
+  "username" : null,
+  "measure" : [ {
+    "mid" : 20,
+    "value" : "72.3",
+    "measureDefinition" : {
+      "type" : "weight",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 21,
+    "value" : "1.86",
+    "measureDefinition" : {
+      "type" : "height",
+      "dataType" : "double"
+    }
+  } ]
+}
+-------------------- Task 3.5 --------------------
+
+Request: #5 DELETE /person/7 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 204
+ 
+Request: #2 GET /person/7 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 404
+ 
+-------------------- Task 3.6 --------------------
+
+Request: #9 GET /measureTypes Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+{
+  "measureType" : [ "weight", "height", "steps", "bloodpressure", "heartrate", "bmi" ]
+}
+-------------------- Task 3.7 --------------------
+
+Request: #6 GET /person/3/weight Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ {
+  "mid" : 1,
+  "value" : "72",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 2,
+  "value" : "900",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 3,
+  "value" : "900",
+  "created" : "2016-11-21"
+} ]
+Request: #6 GET /person/3/height Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+Request: #6 GET /person/3/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+Request: #6 GET /person/3/bloodpressure Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+Request: #6 GET /person/3/heartrate Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+Request: #6 GET /person/3/bmi Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+Request: #6 GET /person/5/weight Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+Request: #6 GET /person/5/height Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ {
+  "mid" : 6,
+  "value" : "1.5",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 7,
+  "value" : "1.57",
+  "created" : "2016-11-21"
+} ]
+Request: #6 GET /person/5/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ {
+  "mid" : 4,
+  "value" : "5",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 5,
+  "value" : "200",
+  "created" : "2016-11-21"
+} ]
+Request: #6 GET /person/5/bloodpressure Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+Request: #6 GET /person/5/heartrate Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+Request: #6 GET /person/5/bmi Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+-------------------- Task 3.8 --------------------
+
+Request: #7 GET /person/3/steps/4 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: ERROR
+=>HTTP Status: 204
+ 
+-------------------- Task 3.9 --------------------
+
+Request: #6 GET /person/3/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ ]
+Request: #8 POST /person/3/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+{
+  "idPerson" : 3,
+  "firstname" : "a aAndreaa a",
+  "lastname" : "Metal",
+  "birthdate" : "1944-12-31",
+  "email" : "jj.norris@gmail.com",
+  "username" : "jj.norris",
+  "measure" : [ {
+    "mid" : 4,
+    "value" : "72",
+    "measureDefinition" : {
+      "type" : "height",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 12,
+    "value" : "155",
+    "measureDefinition" : {
+      "type" : "weight",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 22,
+    "value" : "102",
+    "measureDefinition" : {
+      "type" : "steps",
+      "dataType" : "integer"
+    }
+  } ]
+}
+Request: #6 GET /person/3/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ {
+  "mid" : 51,
+  "value" : "102",
+  "created" : "2016-11-22"
+} ]

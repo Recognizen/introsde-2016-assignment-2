@@ -1,0 +1,404 @@
+URL of the server: https://warm-dawn-26932.herokuapp.com/sdelab
+-------------------- Task 3.1 --------------------
+
+Request: #1 GET /person Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><people>
+  <person>
+    <idPerson>3</idPerson>
+    <firstname>Andrea</firstname>
+    <lastname>Metal</lastname>
+    <birthdate>1944-12-31T23:00:00Z</birthdate>
+    <email>jj.norris@gmail.com</email>
+    <username>jj.norris</username>
+    <healthProfile>
+      <measure>
+        <mid>4</mid>
+        <value>72</value>
+        <measureDefinition>
+          <type>height</type>
+          <dataType>double</dataType>
+        </measureDefinition>
+      </measure>
+      <measure>
+        <mid>12</mid>
+        <value>155</value>
+        <measureDefinition>
+          <type>weight</type>
+          <dataType>double</dataType>
+        </measureDefinition>
+      </measure>
+    </healthProfile>
+  </person>
+  <person>
+    <idPerson>4</idPerson>
+    <firstname>John</firstname>
+    <lastname>Slow</lastname>
+    <birthdate>1944-12-31T23:00:00Z</birthdate>
+    <email>jon.snow@gmail.com</email>
+    <username>jon.snow</username>
+    <healthProfile>
+      <measure>
+        <mid>5</mid>
+        <value>100</value>
+        <measureDefinition>
+          <type>weight</type>
+          <dataType>double</dataType>
+        </measureDefinition>
+      </measure>
+      <measure>
+        <mid>6</mid>
+        <value>1.72</value>
+        <measureDefinition>
+          <type>height</type>
+          <dataType>double</dataType>
+        </measureDefinition>
+      </measure>
+    </healthProfile>
+  </person>
+  <person>
+    <idPerson>5</idPerson>
+    <firstname>Kim</firstname>
+    <lastname>John</lastname>
+    <birthdate>1944-12-31T23:00:00Z</birthdate>
+    <email>kim.john@gmail.com</email>
+    <username>kim.john</username>
+    <healthProfile>
+      <measure>
+        <mid>7</mid>
+        <value>50</value>
+        <measureDefinition>
+          <type>weight</type>
+          <dataType>double</dataType>
+        </measureDefinition>
+      </measure>
+      <measure>
+        <mid>14</mid>
+        <value>20</value>
+        <measureDefinition>
+          <type>steps</type>
+          <dataType>integer</dataType>
+        </measureDefinition>
+      </measure>
+      <measure>
+        <mid>16</mid>
+        <value>1.57</value>
+        <measureDefinition>
+          <type>height</type>
+          <dataType>double</dataType>
+        </measureDefinition>
+      </measure>
+    </healthProfile>
+  </person>
+</people>
+
+-------------------- Task 3.2 --------------------
+
+Request: #2 GET /person/3 Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><person>
+  <idPerson>3</idPerson>
+  <firstname>Andrea</firstname>
+  <lastname>Metal</lastname>
+  <birthdate>1944-12-31T23:00:00Z</birthdate>
+  <email>jj.norris@gmail.com</email>
+  <username>jj.norris</username>
+  <healthProfile>
+    <measure>
+      <mid>4</mid>
+      <value>72</value>
+      <measureDefinition>
+        <type>height</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+    <measure>
+      <mid>12</mid>
+      <value>155</value>
+      <measureDefinition>
+        <type>weight</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+  </healthProfile>
+</person>
+
+-------------------- Task 3.3 --------------------
+
+Request: #2 GET /person/3 Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><person>
+  <idPerson>3</idPerson>
+  <firstname>Andrea</firstname>
+  <lastname>Metal</lastname>
+  <birthdate>1944-12-31T23:00:00Z</birthdate>
+  <email>jj.norris@gmail.com</email>
+  <username>jj.norris</username>
+  <healthProfile>
+    <measure>
+      <mid>4</mid>
+      <value>72</value>
+      <measureDefinition>
+        <type>height</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+    <measure>
+      <mid>12</mid>
+      <value>155</value>
+      <measureDefinition>
+        <type>weight</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+  </healthProfile>
+</person>
+
+Request: #3 PUT /person/3 Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: ERROR
+=>HTTP Status: 201
+ 
+Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><person>
+  <idPerson>3</idPerson>
+  <firstname> aAndreaa </firstname>
+  <lastname>Metal</lastname>
+  <birthdate>1944-12-31T23:00:00Z</birthdate>
+  <email>jj.norris@gmail.com</email>
+  <username>jj.norris</username>
+  <healthProfile>
+    <measure>
+      <mid>4</mid>
+      <value>72</value>
+      <measureDefinition>
+        <type>height</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+    <measure>
+      <mid>12</mid>
+      <value>155</value>
+      <measureDefinition>
+        <type>weight</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+  </healthProfile>
+</person>
+
+-------------------- Task 3.4 --------------------
+
+Request: #4 POST /person Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><person>
+  <idPerson>6</idPerson>
+  <firstname>New</firstname>
+  <lastname>Person</lastname>
+  <birthdate>1978-09-01T22:00:00Z</birthdate>
+  <email>new.person@gmail.com</email>
+  <username>new.person</username>
+  <healthProfile>
+    <measure>
+      <mid>17</mid>
+      <value>72.3</value>
+      <measureDefinition>
+        <type>weight</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+    <measure>
+      <mid>18</mid>
+      <value>1.86</value>
+      <measureDefinition>
+        <type>height</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+  </healthProfile>
+</person>
+
+-------------------- Task 3.5 --------------------
+
+Request: #5 DELETE /person/6 Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 204
+ 
+Request: #2 GET /person/6 Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 404
+ 
+-------------------- Task 3.6 --------------------
+
+Request: #9 GET /measureTypes Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><measureTypes>
+  <measureType>weight</measureType>
+  <measureType>height</measureType>
+  <measureType>steps</measureType>
+  <measureType>bloodpressure</measureType>
+  <measureType>heartrate</measureType>
+  <measureType>bmi</measureType>
+</measureTypes>
+
+-------------------- Task 3.7 --------------------
+
+Request: #6 GET /person/3/weight Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories>
+  <measure>
+    <mid>1</mid>
+    <value>72</value>
+    <created>2016-11-21T23:00:00Z</created>
+  </measure>
+  <measure>
+    <mid>2</mid>
+    <value>900</value>
+    <created>2016-11-21T23:00:00Z</created>
+  </measure>
+  <measure>
+    <mid>3</mid>
+    <value>900</value>
+    <created>2016-11-21T23:00:00Z</created>
+  </measure>
+</healthMeasureHistories>
+
+Request: #6 GET /person/3/height Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+Request: #6 GET /person/3/steps Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+Request: #6 GET /person/3/bloodpressure Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+Request: #6 GET /person/3/heartrate Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+Request: #6 GET /person/3/bmi Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+Request: #6 GET /person/5/weight Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+Request: #6 GET /person/5/height Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories>
+  <measure>
+    <mid>6</mid>
+    <value>1.5</value>
+    <created>2016-11-21T23:00:00Z</created>
+  </measure>
+  <measure>
+    <mid>7</mid>
+    <value>1.57</value>
+    <created>2016-11-21T23:00:00Z</created>
+  </measure>
+</healthMeasureHistories>
+
+Request: #6 GET /person/5/steps Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories>
+  <measure>
+    <mid>4</mid>
+    <value>5</value>
+    <created>2016-11-21T23:00:00Z</created>
+  </measure>
+  <measure>
+    <mid>5</mid>
+    <value>200</value>
+    <created>2016-11-21T23:00:00Z</created>
+  </measure>
+</healthMeasureHistories>
+
+Request: #6 GET /person/5/bloodpressure Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+Request: #6 GET /person/5/heartrate Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+Request: #6 GET /person/5/bmi Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+-------------------- Task 3.8 --------------------
+
+Request: #7 GET /person/3/steps/4 Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: ERROR
+=>HTTP Status: 204
+ 
+-------------------- Task 3.9 --------------------
+
+Request: #6 GET /person/3/steps Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
+
+Request: #8 POST /person/3/steps Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: ERROR
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><person>
+  <idPerson>3</idPerson>
+  <firstname> aAndreaa </firstname>
+  <lastname>Metal</lastname>
+  <birthdate>1944-12-31T23:00:00Z</birthdate>
+  <email>jj.norris@gmail.com</email>
+  <username>jj.norris</username>
+  <healthProfile>
+    <measure>
+      <mid>4</mid>
+      <value>72</value>
+      <measureDefinition>
+        <type>height</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+    <measure>
+      <mid>12</mid>
+      <value>155</value>
+      <measureDefinition>
+        <type>weight</type>
+        <dataType>double</dataType>
+      </measureDefinition>
+    </measure>
+    <measure>
+      <mid>19</mid>
+      <value>102</value>
+      <measureDefinition>
+        <type>steps</type>
+        <dataType>integer</dataType>
+      </measureDefinition>
+    </measure>
+  </healthProfile>
+</person>
+
+Request: #6 GET /person/3/steps Accept: APPLICATION/XML Content-Type: APPLICATION/XML
+=>Result: OK
+=>HTTP Status: 200
+<?xml version="1.0" encoding="UTF-8"?><healthMeasureHistories/>
