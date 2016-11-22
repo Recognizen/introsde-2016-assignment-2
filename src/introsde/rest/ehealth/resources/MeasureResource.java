@@ -136,4 +136,27 @@ public class MeasureResource {
 		}
 		return null;
 	}
+	
+   	@PUT
+	@Path("{mid}")
+    @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    public Response putPerson(@PathParam("mid") int mid, HealthMeasureHistory history) {
+        System.out.println("--> Updating History... " + mid);
+        System.out.println("--> " + history.toString());
+        Response res;
+        HealthMeasureHistory existing = HealthMeasureHistory.getHealthMeasureHistoryById(mid);
+
+        if (existing == null) {
+            res = Response.noContent().build();
+        } else {
+            res = Response.created(uriInfo.getAbsolutePath()).build();
+            if(history.getValue() != null)
+            	existing.setValue(history.getValue());
+            if(history.getCreated() != null)
+            	existing.setCreated(history.getCreated());
+
+        	HealthMeasureHistory.updateHealthMeasureHistory(existing);
+        }
+        return res;
+    }
 }

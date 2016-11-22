@@ -40,9 +40,7 @@ public class ClientMain {
     private int first_person_id;
     private int last_person_id;
 
-    //remove throws
-	public ClientMain(){
-		
+	public ClientMain(){		
 		client = new ClientRequests();   
 		// Print URL
 		System.out.println("URL of the server: " + ClientRequests.getBaseURI());
@@ -55,9 +53,11 @@ public class ClientMain {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
 	}
-	
+
+    public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
+    	new ClientMain();
+    }
 	
 	public void xmlRun() throws JsonParseException, JsonMappingException, IOException, XPathExpressionException, ParserConfigurationException, SAXException{
 		
@@ -385,19 +385,58 @@ public class ClientMain {
 			System.out.println(printResult(request, responseGET.getStatus(), "OK", getBody, format));
 			writerXML.write(printResult(request, responseGET.getStatus(), "OK", getBody, format));
 			
+			
+			// -------------------- Task 3.10 --------------------
+			
+			
+			System.out.println("\nXML:-------------------- Task 3.10 --------------------\n");
+			writerXML.write("\n-------------------- Task 3.10 --------------------\n");
+
+			//Using a R#6 to retrieve the measure with specific mid = measure_id
+			String requestGET = "#6 GET /person/" + measurePersonId + "/"
+					+ measure_type+ "/" 
+					+ measure_id
+					+ " Accept: APPLICATION/XML Content-Type: APPLICATION/XML";
+			
+			responseGET = client.doGET("person/" + measurePersonId + "/" + measure_type + "/" + measure_id, format);
+			body = responseGET.readEntity(String.class);	
+			String oldValue = queryXML.getNodeResult("measure/value",body).getTextContent();
+			
+			request = "#10 PUT /person/" + measurePersonId + "/" + measure_type
+					+ "/" + measure_id
+					+ " Accept: APPLICATION/XML Content-Type: APPLICATION/XML";
+
+			requestBody = "<measure>" 
+							+ "<value>"+(oldValue+1)+"</value>"
+							+ "<created>2011-12-09</created>" 
+						+ "</measure>";
+
+			response = client.doPUT("person/" + measurePersonId + "/" + measure_type + "/" + measure_id, requestBody, format);
+			int statusPUT = response.getStatus();
+			
+			//REDO the GET
+			responseGET = client.doGET("person/" + measurePersonId + "/" + measure_type + "/" + measure_id, format);
+			getBody = responseGET.readEntity(String.class);	
+			String newValue = queryXML.getNodeResult("measure/value",getBody).getTextContent();
+
+			reqResult = (!oldValue.equals(newValue) && statusPUT == 201 ? "OK" : "ERROR");
+
+			//responseGET and body belong to the first GET request
+			System.out.println(printResult(requestGET, responseGET.getStatus(), "OK", body, format));
+			writerXML.write(printResult(requestGET, responseGET.getStatus(), "OK", body, format));
+
+			System.out.println(printResult(request, statusPUT, reqResult, "", format));
+			writerXML.write(printResult(request, statusPUT, reqResult, "", format));
+			
+			//responseGET and getBody belong to the second GET request
+			System.out.println(printResult(requestGET, responseGET.getStatus(), "OK", getBody, format));
+			writerXML.write(printResult(requestGET, responseGET.getStatus(), "OK", getBody, format));
+			
+			// -------------------- Task 3.11 & 3.12 --------------------
+			// Not implemented
+			
 		}
 		writerXML.close();
-	}
-	
-	public String printResult(String request, int status, String result, String body, String format) throws JsonParseException, JsonMappingException, IOException {
-		String craftedResult = "\nRequest: " 
-				+ request + "\n" 
-				+ "=>Result: " + result + "\n"
-				+ "=>HTTP Status: " + status + "\n" ;
-		
-		craftedResult += (format.equals("xml")) ? prettyXML(body) : prettyJSON(body);
-		
-		return craftedResult;
 	}
 	
 	public void jsonRun() throws JsonParseException, JsonMappingException, IOException{
@@ -621,8 +660,6 @@ public class ClientMain {
 			}
 		}
 		
-		//System.out.println(measure_id+" "+measure_type+" "+measureCount);
-		
 		//if at least one measure was found among the two people then OK 
 		if (measureCount == 0) {
 			reqResult = "ERROR";
@@ -719,15 +756,70 @@ public class ClientMain {
 			
 			System.out.println(printResult(request, responseGET.getStatus(), "OK", getBody, format));
 			writerJSON.write(printResult(request, responseGET.getStatus(), "OK", getBody, format));	
+			
+			
+			// -------------------- Task 3.10 --------------------
+			
+			
+			System.out.println("\nJSON:-------------------- Task 3.10 --------------------\n");
+			writerXML.write("\n-------------------- Task 3.10 --------------------\n");
+			
+			//Using a R#6 to retrieve the measure with specific mid = measure_id
+			String requestGET = "#6 GET /person/" + measurePersonId + "/"
+					+ measure_type + "/" 
+					+ measure_id
+					+ " Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON";
+			
+			responseGET = client.doGET("person/" + measurePersonId + "/" + measure_type + "/" + measure_id, format);
+			body = responseGET.readEntity(String.class);	
+			String oldValue = JsonPath.read(body, "$.value");
+			
+			request = "#10 PUT /person/" + measurePersonId + "/" + measure_type
+					+ "/" + measure_id
+					+ " Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON";
+
+			requestBody =  "{"+
+					  			"\"value\": \""+(oldValue+1)+"\","
+					  			+"\"created\": \"2011-12-08\""
+				  			+ "}";
+
+			response = client.doPUT("person/" + measurePersonId + "/" + measure_type + "/" + measure_id, requestBody, format);
+			int statusPUT = response.getStatus();
+			
+			responseGET = client.doGET("person/" + measurePersonId + "/" + measure_type + "/" + measure_id, format);
+			getBody = responseGET.readEntity(String.class);	
+			String newValue = JsonPath.read(getBody, "$.value");
+
+			reqResult = (!oldValue.equals(newValue) && statusPUT == 201 ? "OK" : "ERROR");
+
+			//responseGET and body belong to the first GET request
+			System.out.println(printResult(requestGET, responseGET.getStatus(), "OK", body, format));
+			writerXML.write(printResult(requestGET, responseGET.getStatus(), "OK", body, format));
+
+			System.out.println(printResult(request, statusPUT, reqResult, "", format));
+			writerXML.write(printResult(request, statusPUT, reqResult, "", format));
+			
+			//responseGET and getBody belong to the second GET request
+			System.out.println(printResult(requestGET, responseGET.getStatus(), "OK", getBody, format));
+			writerXML.write(printResult(requestGET, responseGET.getStatus(), "OK", getBody, format));
+			
+			// -------------------- Task 3.11 & 3.12 --------------------
+			// Not implemented
+		
 		}
 		writerJSON.close();
 	}
-
-	
-    public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
-    	new ClientMain();
-    }
     
+	public String printResult(String request, int status, String result, String body, String format) throws JsonParseException, JsonMappingException, IOException {
+		String craftedResult = "\nRequest: " 
+				+ request + "\n" 
+				+ "=>Result: " + result + "\n"
+				+ "=>HTTP Status: " + status + "\n" ;
+		
+		craftedResult += (format.equals("xml")) ? prettyXML(body) : prettyJSON(body);
+		
+		return craftedResult;
+	}
 	
 	public static String prettyJSON(String input) throws JsonParseException,
 			JsonMappingException, IOException {
