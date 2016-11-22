@@ -6,7 +6,7 @@ Request: #1 GET /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>HTTP Status: 200
 [ {
   "idPerson" : 3,
-  "firstname" : " aAndreaa ",
+  "firstname" : "aStronga",
   "lastname" : "Metal",
   "birthdate" : "1944-12-31",
   "email" : "jj.norris@gmail.com",
@@ -14,6 +14,7 @@ Request: #1 GET /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
   "measure" : [ {
     "mid" : 4,
     "value" : "72",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "height",
       "dataType" : "double"
@@ -21,16 +22,10 @@ Request: #1 GET /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
   }, {
     "mid" : 12,
     "value" : "155",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "weight",
       "dataType" : "double"
-    }
-  }, {
-    "mid" : 19,
-    "value" : "102",
-    "measureDefinition" : {
-      "type" : "steps",
-      "dataType" : "integer"
     }
   } ]
 }, {
@@ -43,6 +38,7 @@ Request: #1 GET /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
   "measure" : [ {
     "mid" : 5,
     "value" : "100",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "weight",
       "dataType" : "double"
@@ -50,6 +46,7 @@ Request: #1 GET /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
   }, {
     "mid" : 6,
     "value" : "1.72",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "height",
       "dataType" : "double"
@@ -65,23 +62,26 @@ Request: #1 GET /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
   "measure" : [ {
     "mid" : 7,
     "value" : "50",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "weight",
       "dataType" : "double"
     }
   }, {
-    "mid" : 14,
-    "value" : "20",
-    "measureDefinition" : {
-      "type" : "steps",
-      "dataType" : "integer"
-    }
-  }, {
     "mid" : 16,
     "value" : "1.57",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "height",
       "dataType" : "double"
+    }
+  }, {
+    "mid" : 236,
+    "value" : "102",
+    "created" : "2011-12-09",
+    "measureDefinition" : {
+      "type" : "steps",
+      "dataType" : "integer"
     }
   } ]
 } ]
@@ -92,7 +92,7 @@ Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSO
 =>HTTP Status: 200
 {
   "idPerson" : 3,
-  "firstname" : " aAndreaa ",
+  "firstname" : "aStronga",
   "lastname" : "Metal",
   "birthdate" : "1944-12-31",
   "email" : "jj.norris@gmail.com",
@@ -100,6 +100,7 @@ Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSO
   "measure" : [ {
     "mid" : 4,
     "value" : "72",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "height",
       "dataType" : "double"
@@ -107,16 +108,10 @@ Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSO
   }, {
     "mid" : 12,
     "value" : "155",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "weight",
       "dataType" : "double"
-    }
-  }, {
-    "mid" : 19,
-    "value" : "102",
-    "measureDefinition" : {
-      "type" : "steps",
-      "dataType" : "integer"
     }
   } ]
 }
@@ -127,7 +122,7 @@ Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSO
 =>HTTP Status: 200
 {
   "idPerson" : 3,
-  "firstname" : " aAndreaa ",
+  "firstname" : "aStronga",
   "lastname" : "Metal",
   "birthdate" : "1944-12-31",
   "email" : "jj.norris@gmail.com",
@@ -135,6 +130,7 @@ Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSO
   "measure" : [ {
     "mid" : 4,
     "value" : "72",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "height",
       "dataType" : "double"
@@ -142,16 +138,10 @@ Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSO
   }, {
     "mid" : 12,
     "value" : "155",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "weight",
       "dataType" : "double"
-    }
-  }, {
-    "mid" : 19,
-    "value" : "102",
-    "measureDefinition" : {
-      "type" : "steps",
-      "dataType" : "integer"
     }
   } ]
 }
@@ -164,7 +154,7 @@ Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSO
 =>HTTP Status: 200
 {
   "idPerson" : 3,
-  "firstname" : "a aAndreaa a",
+  "firstname" : "aaStrongaa",
   "lastname" : "Metal",
   "birthdate" : "1944-12-31",
   "email" : "jj.norris@gmail.com",
@@ -172,6 +162,7 @@ Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSO
   "measure" : [ {
     "mid" : 4,
     "value" : "72",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "height",
       "dataType" : "double"
@@ -179,16 +170,10 @@ Request: #2 GET /person/3 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSO
   }, {
     "mid" : 12,
     "value" : "155",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "weight",
       "dataType" : "double"
-    }
-  }, {
-    "mid" : 19,
-    "value" : "102",
-    "measureDefinition" : {
-      "type" : "steps",
-      "dataType" : "integer"
     }
   } ]
 }
@@ -198,22 +183,24 @@ Request: #4 POST /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
 =>HTTP Status: 200
 {
-  "idPerson" : 7,
+  "idPerson" : 257,
   "firstname" : "New",
   "lastname" : "Person",
   "birthdate" : "1978-09-01",
   "email" : "new.person@gmail.com",
   "username" : null,
   "measure" : [ {
-    "mid" : 20,
+    "mid" : 237,
     "value" : "72.3",
+    "created" : "2016-11-22",
     "measureDefinition" : {
       "type" : "weight",
       "dataType" : "double"
     }
   }, {
-    "mid" : 21,
+    "mid" : 238,
     "value" : "1.86",
+    "created" : "2016-11-22",
     "measureDefinition" : {
       "type" : "height",
       "dataType" : "double"
@@ -222,11 +209,11 @@ Request: #4 POST /person Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 }
 -------------------- Task 3.5 --------------------
 
-Request: #5 DELETE /person/7 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+Request: #5 DELETE /person/257 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
 =>HTTP Status: 204
  
-Request: #2 GET /person/7 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+Request: #2 GET /person/257 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
 =>HTTP Status: 404
  
@@ -251,35 +238,31 @@ Request: #6 GET /person/3/weight Accept: APPLICATION/JSON Content-Type: APPLICAT
   "mid" : 2,
   "value" : "900",
   "created" : "2016-11-21"
-}, {
-  "mid" : 3,
-  "value" : "900",
-  "created" : "2016-11-21"
 } ]
 Request: #6 GET /person/3/height Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
-=>HTTP Status: 200
-[ ]
+=>HTTP Status: 204
+ 
 Request: #6 GET /person/3/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
-=>HTTP Status: 200
-[ ]
+=>HTTP Status: 204
+ 
 Request: #6 GET /person/3/bloodpressure Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
-=>HTTP Status: 200
-[ ]
+=>HTTP Status: 204
+ 
 Request: #6 GET /person/3/heartrate Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
-=>HTTP Status: 200
-[ ]
+=>HTTP Status: 204
+ 
 Request: #6 GET /person/3/bmi Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
-=>HTTP Status: 200
-[ ]
+=>HTTP Status: 204
+ 
 Request: #6 GET /person/5/weight Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
-=>HTTP Status: 200
-[ ]
+=>HTTP Status: 204
+ 
 Request: #6 GET /person/5/height Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
 =>HTTP Status: 200
@@ -297,75 +280,146 @@ Request: #6 GET /person/5/steps Accept: APPLICATION/JSON Content-Type: APPLICATI
 =>HTTP Status: 200
 [ {
   "mid" : 4,
-  "value" : "5",
-  "created" : "2016-11-21"
+  "value" : "51",
+  "created" : "2011-12-09"
 }, {
   "mid" : 5,
   "value" : "200",
   "created" : "2016-11-21"
+}, {
+  "mid" : 51,
+  "value" : "20",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 52,
+  "value" : "102",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 102,
+  "value" : "200",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 151,
+  "value" : "102",
+  "created" : "1950-10-09"
 } ]
 Request: #6 GET /person/5/bloodpressure Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
-=>HTTP Status: 200
-[ ]
-Request: #6 GET /person/5/heartrate Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
-=>Result: OK
-=>HTTP Status: 200
-[ ]
-Request: #6 GET /person/5/bmi Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
-=>Result: OK
-=>HTTP Status: 200
-[ ]
--------------------- Task 3.8 --------------------
-
-Request: #7 GET /person/3/steps/4 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
-=>Result: ERROR
 =>HTTP Status: 204
  
--------------------- Task 3.9 --------------------
-
-Request: #6 GET /person/3/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+Request: #6 GET /person/5/heartrate Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
-=>HTTP Status: 200
-[ ]
-Request: #8 POST /person/3/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>HTTP Status: 204
+ 
+Request: #6 GET /person/5/bmi Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 204
+ 
+-------------------- Task 3.8 --------------------
+
+Request: #7 GET /person/5/steps/4 Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
 =>HTTP Status: 200
 {
-  "idPerson" : 3,
-  "firstname" : "a aAndreaa a",
-  "lastname" : "Metal",
+  "mid" : 4,
+  "value" : "51",
+  "created" : "2011-12-09"
+}
+-------------------- Task 3.9 --------------------
+
+Request: #6 GET /person/5/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+[ {
+  "mid" : 4,
+  "value" : "51",
+  "created" : "2011-12-09"
+}, {
+  "mid" : 5,
+  "value" : "200",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 51,
+  "value" : "20",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 52,
+  "value" : "102",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 102,
+  "value" : "200",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 151,
+  "value" : "102",
+  "created" : "1950-10-09"
+} ]
+Request: #8 POST /person/5/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+=>Result: OK
+=>HTTP Status: 200
+{
+  "idPerson" : 5,
+  "firstname" : "Kim",
+  "lastname" : "John",
   "birthdate" : "1944-12-31",
-  "email" : "jj.norris@gmail.com",
-  "username" : "jj.norris",
+  "email" : "kim.john@gmail.com",
+  "username" : "kim.john",
   "measure" : [ {
-    "mid" : 4,
-    "value" : "72",
-    "measureDefinition" : {
-      "type" : "height",
-      "dataType" : "double"
-    }
-  }, {
-    "mid" : 12,
-    "value" : "155",
+    "mid" : 7,
+    "value" : "50",
+    "created" : "1944-12-31",
     "measureDefinition" : {
       "type" : "weight",
       "dataType" : "double"
     }
   }, {
-    "mid" : 22,
+    "mid" : 16,
+    "value" : "1.57",
+    "created" : "1944-12-31",
+    "measureDefinition" : {
+      "type" : "height",
+      "dataType" : "double"
+    }
+  }, {
+    "mid" : 239,
     "value" : "102",
+    "created" : "1950-10-10",
     "measureDefinition" : {
       "type" : "steps",
       "dataType" : "integer"
     }
   } ]
 }
-Request: #6 GET /person/3/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
+Request: #6 GET /person/5/steps Accept: APPLICATION/JSON Content-Type: APPLICATION/JSON
 =>Result: OK
 =>HTTP Status: 200
 [ {
+  "mid" : 4,
+  "value" : "51",
+  "created" : "2011-12-09"
+}, {
+  "mid" : 5,
+  "value" : "200",
+  "created" : "2016-11-21"
+}, {
   "mid" : 51,
+  "value" : "20",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 52,
   "value" : "102",
-  "created" : "2016-11-22"
+  "created" : "2016-11-21"
+}, {
+  "mid" : 102,
+  "value" : "200",
+  "created" : "2016-11-21"
+}, {
+  "mid" : 151,
+  "value" : "102",
+  "created" : "1950-10-09"
+}, {
+  "mid" : 152,
+  "value" : "102",
+  "created" : "2011-12-09"
 } ]
